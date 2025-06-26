@@ -8,8 +8,6 @@
 
 #include "time_measuring.hpp"
 
-// Here we use edge stream representation.
-
 #define INF INT_MAX/2
 
 void getShortestPath(std::vector<std::tuple<int,int,int,int>> const& graph, unsigned graphSize, const int a, std::vector<int>& results);
@@ -64,7 +62,7 @@ void getShortestPath(std::vector<std::tuple<int,int,int,int>> const& graph, unsi
             la[u][t] = t;
             ls[u][t] = t;
         }
-        auto it_au = la[u].lower_bound(t);
+        auto it_au = la[u].upper_bound(t);
         if (it_au == la[u].begin()) {
             continue;
         }
@@ -83,9 +81,12 @@ void getShortestPath(std::vector<std::tuple<int,int,int,int>> const& graph, unsi
             if (dominated_it->second <= sv) {
                 ls[v].erase(dominated_it->second);
                 auto it_copy = dominated_it;
+                dominated_it++;
                 la[v].erase(it_copy);
             }
-            dominated_it++;
+            else {
+                dominated_it++;
+            }
         }
         results[v] = std::min(results[v], av-sv);
     }

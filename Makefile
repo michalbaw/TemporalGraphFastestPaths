@@ -1,10 +1,10 @@
 default: all
 
 prepare:
-	g++ Algorytmy/wu_multi_pass/main.cpp -std=c++23 -O3 -I Algorytmy/includes -o wu_multi_pass.out
-	g++ Algorytmy/wu_single_pass/main.cpp -std=c++23 -O3 -I Algorytmy/includes -o wu_single_pass.out
-	g++ Algorytmy/wu_transformation/main.cpp -std=c++23 -O3 -I Algorytmy/includes -o wu_transformation.out
-	g++ Algorytmy/gheibi_transformation/main.cpp -std=c++23 -O3 -I Algorytmy/includes -o gheibi_transformation.out
+	g++ Algorithms/wu_multi_pass/main.cpp -std=c++23 -O3 -I Algorithms/includes -o wu_multi_pass.out
+	g++ Algorithms/wu_single_pass/main.cpp -std=c++23 -O3 -I Algorithms/includes -o wu_single_pass.out
+	g++ Algorithms/wu_transformation/main.cpp -std=c++23 -O3 -I Algorithms/includes -o wu_transformation.out
+	g++ Algorithms/gheibi_transformation/main.cpp -std=c++23 -O3 -I Algorithms/includes -o gheibi_transformation.out
 
 test: test_astroph test_dimacs9 test_linux test_notredame test_wikipedia
 
@@ -18,7 +18,7 @@ all: prepare test clean
 
 test_astroph:
 	@echo "Preparing test AstroPh"
-	./generator.py 7 60 5 100 > astroph.in < Dane/ca-AstroPh/out.ca-AstroPh
+	./generator.py 7 60 5 100 > astroph.in < Data/ca-AstroPh/out.ca-AstroPh
 	@echo "Testing wu_multi_pass: "
 	./wu_multi_pass.out < astroph.in > wu_multi_pass_astroph.out
 	@echo "Testing wu_single_pass: "
@@ -30,7 +30,7 @@ test_astroph:
 
 test_dimacs9:
 	@echo "Preparing test Dimacs9"
-	./generator.py 7 60 5 100 > dimacs9.in < Dane/dimacs9-COL/out.dimacs9-COL
+	./generator.py 7 60 5 100 > dimacs9.in < Data/dimacs9-COL/out.dimacs9-COL
 	@echo "Testing wu_multi_pass: "
 	./wu_multi_pass.out < dimacs9.in > wu_multi_pass_dimacs9.out
 	@echo "Testing wu_single_pass: "
@@ -43,7 +43,7 @@ test_dimacs9:
 
 test_linux:
 	@echo "Preparing test Linux"
-	./generator.py 7 60 5 100 > linux.in < Dane/linux/out.linux
+	./generator.py 7 60 5 100 > linux.in < Data/linux/out.linux
 	@echo "Testing wu_multi_pass: "
 	./wu_multi_pass.out < linux.in > wu_multi_pass_linux.out
 	@echo "Testing wu_single_pass: "
@@ -56,7 +56,7 @@ test_linux:
 
 test_notredame:
 	@echo "Preparing test NotreDame"
-	./generator.py 7 60 5 100 > notredame.in < Dane/web-NotreDame/out.web-NotreDame
+	./generator.py 7 60 5 100 > notredame.in < Data/web-NotreDame/out.web-NotreDame
 	@echo "Testing wu_multi_pass: "
 	./wu_multi_pass.out < notredame.in > wu_multi_pass_notredame.out
 	@echo "Testing wu_single_pass: "
@@ -69,7 +69,7 @@ test_notredame:
 
 test_wikipedia:
 	@echo "Preparing test Wikipedia"
-	./generator.py 7 60 5 100 > wikipedia.in < Dane/wikipedia_link_io/out.wikipedia_link_io
+	./generator.py 7 60 5 100 > wikipedia.in < Data/wikipedia_link_io/out.wikipedia_link_io
 	@echo "Testing wu_multi_pass: "
 	./wu_multi_pass.out < wikipedia.in > wu_multi_pass_wikipedia.out
 	@echo "Testing wu_single_pass: "

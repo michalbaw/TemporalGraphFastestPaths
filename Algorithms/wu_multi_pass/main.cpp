@@ -6,8 +6,6 @@
 
 #include "time_measuring.hpp"
 
-// Here we use edge stream representation.
-
 #define INF INT_MAX/2
 
 void getShortestPath(std::vector<std::tuple<int,int,int,int>> const& graph, const int graphSize, const int a, std::vector<int>& results);
