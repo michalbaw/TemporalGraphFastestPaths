@@ -1,0 +1,11 @@
+name:	Colorado
+code:	9C
+url:	http://www.diag.uniroma1.it/challenge9/download.shtml
+category:	Infrastructure
+description:	Node–node road
+long-description:  This is the directed road network from the 9th DIMACS Implementation Challenge, for the area "Colorado". 
+entity-names:	node
+relationship-names:	road
+extr:	dimacs9
+timeiso:	1991
+tags:	

@@ -1,0 +1,76 @@
+Notre Dame network, part of the Koblenz Network Collection
+===========================================================================
+
+This directory contains the TSV and related files of the web-NotreDame network: This is the directed network of hyperlinks between the web pages from the website of the University of Notre Dame.  
+
+
+More information about the network is provided here: 
+http://konect.cc/networks/web-NotreDame
+
+Files: 
+    meta.web-NotreDame -- Metadata about the network 
+    out.web-NotreDame -- The adjacency matrix of the network in whitespace-separated values format, with one edge per line
+      The meaning of the columns in out.web-NotreDame are: 
+        First column: ID of from node 
+        Second column: ID of to node
+        Third column (if present): weight or multiplicity of edge
+        Fourth column (if present):  timestamp of edges Unix time
+
+
+Use the following References for citation:
+
+@MISC{konect:2017:web-NotreDame,
+    title = {Notre Dame network dataset -- {KONECT}},
+    month = oct,
+    year = {2017},
+    url = {http://konect.cc/networks/web-NotreDame}
+}
+
+@article{konect:albert1999,
+	author = {Albert, Réka and Jeong, Hawoong and Barabási, Albert-Laszlo},
+	title = {Internet: Diameter of the World Wide Web},
+	journal = {Nature},
+	year = {1999},
+	month = {Sep},
+	volume = {401},
+	number = {6749},
+	pages = {130--131},
+}
+
+@article{konect:albert1999,
+	author = {Albert, Réka and Jeong, Hawoong and Barabási, Albert-Laszlo},
+	title = {Internet: Diameter of the World Wide Web},
+	journal = {Nature},
+	year = {1999},
+	month = {Sep},
+	volume = {401},
+	number = {6749},
+	pages = {130--131},
+}
+
+
+@inproceedings{konect,
+	title = {{KONECT} -- {The} {Koblenz} {Network} {Collection}},
+	author = {Jérôme Kunegis},
+	year = {2013},
+	booktitle = {Proc. Int. Conf. on World Wide Web Companion},
+	pages = {1343--1350},
+	url = {http://dl.acm.org/citation.cfm?id=2488173},
+	url_presentation = {https://www.slideshare.net/kunegis/presentationwow},
+	url_web = {http://konect.cc/},
+	url_citations = {https://scholar.google.com/scholar?cites=7174338004474749050},
+}
+
+@inproceedings{konect,
+	title = {{KONECT} -- {The} {Koblenz} {Network} {Collection}},
+	author = {Jérôme Kunegis},
+	year = {2013},
+	booktitle = {Proc. Int. Conf. on World Wide Web Companion},
+	pages = {1343--1350},
+	url = {http://dl.acm.org/citation.cfm?id=2488173},
+	url_presentation = {https://www.slideshare.net/kunegis/presentationwow},
+	url_web = {http://konect.cc/},
+	url_citations = {https://scholar.google.com/scholar?cites=7174338004474749050},
+}
+
+
