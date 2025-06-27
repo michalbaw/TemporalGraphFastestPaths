@@ -18,7 +18,7 @@ all: prepare test clean
 
 astroph:
 	@echo "Preparing test AstroPh"
-	./generator.py 7 60 5 1 > astroph.in < Data/ca-AstroPh/out.ca-AstroPh
+	./generator.py 7 60 5 100 > astroph.in < Data/ca-AstroPh/out.ca-AstroPh
 	@echo "Testing wu_multi_pass: "
 	./wu_multi_pass.out < astroph.in > wu_multi_pass_astroph.out
 	@echo "Testing wu_single_pass: "

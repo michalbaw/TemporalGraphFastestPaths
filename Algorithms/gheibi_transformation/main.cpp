@@ -105,10 +105,11 @@ void getShortestPaths(graph_t& graph, int beginPoint, std::vector<int>& results)
             auto [e, t] = q.front();
             q.pop();
             auto wasInserted = visited.insert({e->second.vertex_no, e->first}).second;
+            results[e->second.vertex_no] = std::min(results[e->second.vertex_no], t - it->first);
             if (!wasInserted) {
                 continue;
             }
-            results[e->second.vertex_no] = std::min(results[e->second.vertex_no], t - it->first);
+            // std::print("Vertex: {} {}, with time: {}, {}\n", e->second.vertex_no, e->first, t, it->first);
             auto it_copy = e;
             it_copy++;
             if (it_copy != graph[e->second.vertex_no].end()) {
