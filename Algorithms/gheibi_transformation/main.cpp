@@ -109,7 +109,6 @@ void getShortestPaths(graph_t& graph, int beginPoint, std::vector<int>& results)
             if (!wasInserted) {
                 continue;
             }
-            // std::print("Vertex: {} {}, with time: {}, {}\n", e->second.vertex_no, e->first, t, it->first);
             auto it_copy = e;
             it_copy++;
             if (it_copy != graph[e->second.vertex_no].end()) {

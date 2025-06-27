@@ -6,7 +6,7 @@ prepare:
 	g++ Algorithms/wu_transformation/main.cpp -std=c++23 -O3 -I Algorithms/includes -o wu_transformation.out
 	g++ Algorithms/gheibi_transformation/main.cpp -std=c++23 -O3 -I Algorithms/includes -o gheibi_transformation.out
 
-test: astroph test_dimacs9 test_linux test_notredame test_wikipedia
+test: astroph dimacs9 linux notredame wikipedia
 
 clean:
 	rm *.out *.in
@@ -29,7 +29,7 @@ astroph:
 	./gheibi_transformation.out < astroph.in > gheibi_transformation_astroph.out
 	./checker.py wu_multi_pass_astroph.out wu_single_pass_astroph.out wu_transformation_astroph.out gheibi_transformation_astroph.out
 
-test_dimacs9:
+dimacs9:
 	@echo "Preparing test Dimacs9"
 	./generator.py 7 60 5 100 > dimacs9.in < Data/dimacs9-COL/out.dimacs9-COL
 	@echo "Testing wu_multi_pass: "
@@ -42,7 +42,7 @@ test_dimacs9:
 	./gheibi_transformation.out < dimacs9.in > gheibi_transformation_dimacs9.out
 	./checker.py wu_multi_pass_dimacs9.out wu_single_pass_dimacs9.out wu_transformation_dimacs9.out gheibi_transformation_dimacs9.out
 
-test_linux:
+linux:
 	@echo "Preparing test Linux"
 	./generator.py 7 60 5 100 > linux.in < Data/linux/out.linux
 	@echo "Testing wu_multi_pass: "
@@ -55,7 +55,7 @@ test_linux:
 	./gheibi_transformation.out < linux.in > gheibi_transformation_linux.out
 	./checker.py wu_multi_pass_linux.out wu_single_pass_linux.out wu_transformation_linux.out gheibi_transformation_linux.out
 
-test_notredame:
+notredame:
 	@echo "Preparing test NotreDame"
 	./generator.py 7 60 5 100 > notredame.in < Data/web-NotreDame/out.web-NotreDame
 	@echo "Testing wu_multi_pass: "
@@ -68,7 +68,7 @@ test_notredame:
 	./gheibi_transformation.out < notredame.in > gheibi_transformation_notredame.out
 	./checker.py wu_multi_pass_notredame.out wu_single_pass_notredame.out wu_transformation_notredame.out gheibi_transformation_notredame.out
 
-test_wikipedia:
+wikipedia:
 	@echo "Preparing test Wikipedia"
 	./generator.py 7 60 5 100 > wikipedia.in < Data/wikipedia_link_io/out.wikipedia_link_io
 	@echo "Testing wu_multi_pass: "

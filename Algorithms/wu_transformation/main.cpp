@@ -14,11 +14,12 @@
 
 namespace std
 {
-    template<class A,class B>
-    struct hash<pair<A,B>>{
-        size_t operator() (const pair<A,B>& p) const {
-            return std::rotl(hash<A>{}(p.first),1) ^
-                hash<B>{}(p.second);
+    template<class A, class B, class C>
+    struct hash<tuple<A,B,C>>{
+        size_t operator() (const tuple<A,B,C>& p) const {
+            return std::rotl(hash<A>{}(get<0>(p)),2) ^
+                std::rotl(hash<B>{}(get<1>(p)),1) ^
+                hash<C>{}(get<2>(p));
         }
     };
 }
@@ -26,9 +27,10 @@ namespace std
 struct node
 {
     int vertex_no;
+    bool isOutNode;
     std::vector<std::map<int,node>::iterator> edges;
 
-    node(int v): vertex_no(v) {}
+    node(int v, bool o): vertex_no(v), isOutNode(o) {}
 };
 
 using graph_t = std::vector<std::pair<std::map<int,node>,std::map<int,node>>>;
@@ -72,8 +74,8 @@ graph_t transform(std::vector<std::tuple<int,int,int,int>> const& graph, unsigne
 {
     graph_t g(graphSize);
     for (auto [time, l, a, b] : graph) {
-        auto outNode = g[a].second.insert(std::pair{time, node(a)}).first;
-        auto inNode = g[b].first.insert(std::pair{time+l, node(b)}).first;
+        auto outNode = g[a].second.insert(std::pair{time, node(a, true)}).first;
+        auto inNode = g[b].first.insert(std::pair{time+l, node(b, false)}).first;
         outNode->second.edges.push_back(inNode);
     }
 
@@ -100,7 +102,7 @@ void getShortestPaths(graph_t& graph, int beginPoint, std::vector<int>& results)
         i = INF;
     }
     results[beginPoint] = 0;
-    std::unordered_set<std::pair<int,int>> visited{};
+    std::unordered_set<std::tuple<int,int,bool>> visited;
     for (auto it = graph[beginPoint].second.end(); it != graph[beginPoint].second.begin(); ) {
         it--;
         std::queue<std::map<int,node>::iterator> q;
@@ -109,10 +111,11 @@ void getShortestPaths(graph_t& graph, int beginPoint, std::vector<int>& results)
         while(!q.empty()) {
             auto const e = q.front();
             q.pop();
-            auto wasInserted = visited.insert(std::pair(e->second.vertex_no, e->first)).second;
+            auto wasInserted = visited.insert(std::tuple(e->second.vertex_no, e->first, e->second.isOutNode)).second;
             if (!wasInserted) {
                 continue;
             }
+            // std::print("Vertex: {} {}, with begin: {}\n", e->second.vertex_no, e->first, it->first);
             results[e->second.vertex_no] = std::min(results[e->second.vertex_no], e->first - it->first);
             auto it_copy = e;
             ++it_copy;
