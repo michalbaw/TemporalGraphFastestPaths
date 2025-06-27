@@ -7,6 +7,7 @@
 #include <unordered_map>
 
 #include "time_measuring.hpp"
+#include "io.hpp"
 
 #define INF INT_MAX/2
 
@@ -37,12 +38,7 @@ int main ()
 
     timeCounter.end();
 
-    for (auto& i : results) {
-        for (auto j : i) {
-            std::print("{} ", j);
-        }
-        std::print("\n");
-    }
+    printResults(results);
 
     std::print(std::cerr, "{}\n", timeCounter);
 }
@@ -68,10 +64,18 @@ void getShortestPath(std::vector<std::tuple<int,int,int,int>> const& graph, unsi
         }
         it_au--;
         int av = t+l, sv = it_au->second;
-        if (ls[v].contains(sv)) {
-            if (ls[v][sv] <= av) {
+    
+        auto it_check = la[v].upper_bound(av);
+        if (it_check != la[v].begin()) {
+            it_check--;
+            if (it_check->first <= av && it_check->second >= sv) {
                 continue;
             }
+        }
+        if (la[v].contains(av)) {
+            ls[v].erase(la[v][av]);
+        }
+        if (ls[v].contains(sv)) {
             la[v].erase(ls[v][sv]);
         }
         ls[v][sv] = av;

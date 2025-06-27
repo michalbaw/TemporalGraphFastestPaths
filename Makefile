@@ -6,7 +6,7 @@ prepare:
 	g++ Algorithms/wu_transformation/main.cpp -std=c++23 -O3 -I Algorithms/includes -o wu_transformation.out
 	g++ Algorithms/gheibi_transformation/main.cpp -std=c++23 -O3 -I Algorithms/includes -o gheibi_transformation.out
 
-test: test_astroph test_dimacs9 test_linux test_notredame test_wikipedia
+test: astroph test_dimacs9 test_linux test_notredame test_wikipedia
 
 clean:
 	rm *.out *.in
@@ -16,9 +16,9 @@ all: prepare test clean
 
 
 
-test_astroph:
+astroph:
 	@echo "Preparing test AstroPh"
-	./generator.py 7 60 5 100 > astroph.in < Data/ca-AstroPh/out.ca-AstroPh
+	./generator.py 7 60 5 1 > astroph.in < Data/ca-AstroPh/out.ca-AstroPh
 	@echo "Testing wu_multi_pass: "
 	./wu_multi_pass.out < astroph.in > wu_multi_pass_astroph.out
 	@echo "Testing wu_single_pass: "
@@ -27,6 +27,7 @@ test_astroph:
 	./wu_transformation.out < astroph.in > wu_transformation_astroph.out
 	@echo "Testing gheibi_transformation: "
 	./gheibi_transformation.out < astroph.in > gheibi_transformation_astroph.out
+	./checker.py wu_multi_pass_astroph.out wu_single_pass_astroph.out wu_transformation_astroph.out gheibi_transformation_astroph.out
 
 test_dimacs9:
 	@echo "Preparing test Dimacs9"

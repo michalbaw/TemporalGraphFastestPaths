@@ -5,6 +5,7 @@
 #include <climits>
 
 #include "time_measuring.hpp"
+#include "io.hpp"
 
 #define INF INT_MAX/2
 
@@ -36,12 +37,7 @@ int main ()
 
     timeCounter.end();
 
-    for (auto& i : results) {
-        for (auto j : i) {
-            std::print("{} ", j);
-        }
-        std::print("\n");
-    }
+    printResults(results);
 
     std::print(std::cerr, "{}\n", timeCounter);
 }
@@ -64,14 +60,12 @@ void getShortestPath(std::vector<std::tuple<int,int,int,int>> const& graph, cons
         }
     }
 
-    int bestTime = INF;
-
     std::vector<int> thisTime(graphSize);
 
-    for (int i : beginTimes) {
+    for (auto i : beginTimes) {
         getSinglePath(graph, graphSize, a, i, thisTime);
         for (int j = 0; j < graphSize; j++) {
-            results[j] = std::min(results[j], thisTime[j]);
+            results[j] = std::min(results[j], thisTime[j] != INF ? thisTime[j]-i : INF);
         }
     }
 }
@@ -86,8 +80,7 @@ void getSinglePath(std::vector<std::tuple<int,int,int,int>> const& graph, const 
         if (t < results[u]) {
             continue;
         }
-        if (t+l < results[v]) {
-            results[v] = t+l;
-        }
+        int time = t+l;
+        results[v] = std::min(results[v], time);
     }
 }
