@@ -10,6 +10,7 @@ temporal_per_edge = int(argv[1])
 timespan = int(argv[2])
 avg_edge_length = int(argv[3])
 question_count = int(argv[4])
+is_symmetric = int(argv[5])
 
 def get_rand_edgecount ():
     global temporal_per_edge
@@ -21,7 +22,7 @@ def get_rand_edge_begin ():
 
 def get_rand_edge_length ():
     global avg_edge_length
-    return random.randint(1, avg_edge_length*2)
+    return max(round(numpy.random.normal(avg_edge_length, avg_edge_length/3)), 1)
 
 graph = []
 
@@ -44,8 +45,12 @@ for line in stdin:
     for _ in range(get_rand_edgecount()):
         m += 1
         graph.append(f'{a} {b} {get_rand_edge_begin()} {get_rand_edge_length()}')
+        if is_symmetric == 1:
+            graph.append(f'{b} {a} {get_rand_edge_begin()} {get_rand_edge_length()}')
 
 n += 1
+if is_symmetric == 1:
+    m *= 2
 
 print(n, m, question_count)
 for i in graph:

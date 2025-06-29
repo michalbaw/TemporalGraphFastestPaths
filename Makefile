@@ -18,7 +18,7 @@ all: prepare test clean
 
 astroph:
 	@echo "Preparing test AstroPh"
-	./generator.py 7 60 5 100 > astroph.in < Data/ca-AstroPh/out.ca-AstroPh
+	./generator.py 40 200 5 10 1 > astroph.in < Data/ca-AstroPh/out.ca-AstroPh
 	@echo "Testing wu_multi_pass: "
 	./wu_multi_pass.out < astroph.in > wu_multi_pass_astroph.out
 	@echo "Testing wu_single_pass: "
@@ -31,7 +31,7 @@ astroph:
 
 dimacs9:
 	@echo "Preparing test Dimacs9"
-	./generator.py 7 60 5 100 > dimacs9.in < Data/dimacs9-COL/out.dimacs9-COL
+	./generator.py 40 200 5 10 0 > dimacs9.in < Data/dimacs9-COL/out.dimacs9-COL
 	@echo "Testing wu_multi_pass: "
 	./wu_multi_pass.out < dimacs9.in > wu_multi_pass_dimacs9.out
 	@echo "Testing wu_single_pass: "
@@ -44,7 +44,7 @@ dimacs9:
 
 linux:
 	@echo "Preparing test Linux"
-	./generator.py 7 60 5 100 > linux.in < Data/linux/out.linux
+	./generator.py 40 200 5 10 0 > linux.in < Data/linux/out.linux
 	@echo "Testing wu_multi_pass: "
 	./wu_multi_pass.out < linux.in > wu_multi_pass_linux.out
 	@echo "Testing wu_single_pass: "
@@ -57,7 +57,7 @@ linux:
 
 notredame:
 	@echo "Preparing test NotreDame"
-	./generator.py 7 60 5 100 > notredame.in < Data/web-NotreDame/out.web-NotreDame
+	./generator.py 40 200 5 10 0 > notredame.in < Data/web-NotreDame/out.web-NotreDame
 	@echo "Testing wu_multi_pass: "
 	./wu_multi_pass.out < notredame.in > wu_multi_pass_notredame.out
 	@echo "Testing wu_single_pass: "
@@ -70,7 +70,7 @@ notredame:
 
 wikipedia:
 	@echo "Preparing test Wikipedia"
-	./generator.py 7 60 5 100 > wikipedia.in < Data/wikipedia_link_io/out.wikipedia_link_io
+	./generator.py 40 200 5 10 0 > wikipedia.in < Data/wikipedia_link_io/out.wikipedia_link_io
 	@echo "Testing wu_multi_pass: "
 	./wu_multi_pass.out < wikipedia.in > wu_multi_pass_wikipedia.out
 	@echo "Testing wu_single_pass: "
